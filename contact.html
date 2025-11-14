@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Pasindu Hewawasam for professional inquiries, collaborations, or project opportunities." />
+  <title>Contact | Pasindu Hewawasam</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav role="navigation">
+    <a href="index.html">Home</a>
+    <a href="index.html#education">Education</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+
+  <!-- Contact Section -->
+  <main class="container">
+    <h1>Get in Touch</h1>
+    <form action="mailto:pasindu.maduranga08@gmail.com" method="POST" enctype="text/plain">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="Type your message here..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-info">
+      <p><strong>Phone:</strong> <a href="tel:+94726839060">+94 72 683 9060</a></p>
+      <p><strong>Email:</strong> <a href="mailto:pasindu.maduranga08@gmail.com">pasindu.maduranga08@gmail.com</a></p>
+    </div>
+
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/pasindu-madhuranga-a02860213" target="_blank" rel="noopener" title="LinkedIn">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon">
+      </a>
+      <a href="https://orcid.org/0009-0002-5157-3012" target="_blank" rel="noopener" title="ORCID">
+        <img src="https://cdn-icons-png.flaticon.com/512/906/906343.png" alt="ORCID Icon">
+      </a>
+    </div>
+
+    <!-- Smart Back Link -->
+    <a id="back-link" class="back-link" href="index.html">← Back</a>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Pasindu Hewawasam — All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Smart Back Button Logic
+    const backLink = document.getElementById("back-link");
+
+    if (document.referrer && document.referrer !== window.location.href) {
+      // User came from another page
+      backLink.textContent = "← Go Back";
+      backLink.href = "javascript:history.back()";
+    } else {
+      // User opened this page directly (no referrer)
+      backLink.textContent = "← Back to Home";
+      backLink.href = "index.html";
+    }
+  </script>
+</body>
+</html>
