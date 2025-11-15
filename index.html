@@ -4,174 +4,176 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pasindu Hewawasam | Portfolio</title>
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div id="progress-bar"></div>
+  <!-- math-themed animated background (place at top of <body>) -->
+  <canvas id="math-bg" aria-hidden="true"></canvas>
 
-  <nav role="navigation">
-    <a href="#home" class="active">Home</a>
-    <a href="#education">Education</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+  <div id="progress-bar" aria-hidden="true"></div>
+
+  <nav role="navigation" class="top-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#home" class="brand">Pasindu</a>
+      <div class="nav-links">
+        <a href="#home" class="active">Home</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
   </nav>
 
   <!-- HOME / HERO -->
-  <section id="home" class="hero" data-nav="home">
-    <img src="photo.jpg" alt="Pasindu Hewawasam" class="profile-pic">
-    <h1>Hello, I'm <span class="highlight">Pasindu Hewawasam</span></h1>
-    <p>I'm a<span class="typing"></span></p>
-    <p>Lecturer | Researcher | Mathematics & Computer Science Enthusiast</p>
-    <a href="HPPM_Hewawasam.pdf" download="HPPM_Hewawasam.pdf" target="_blank" class="btn">📄 Download CV</a>
-  </section>
+  <main>
+    <section id="home" class="hero" data-nav="home" tabindex="-1">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <img src="photo.jpg" alt="Portrait of Pasindu Hewawasam" class="profile-pic" />
+        </div>
+        <div class="hero-right">
+          <h1>Hello, I'm <span class="highlight">Pasindu Hewawasam</span></h1>
+          <p class="sub">I'm a <span class="typing" aria-live="polite"></span></p>
+          <p class="muted">Lecturer · Researcher · Mathematics & Computer Science</p>
+          <div class="hero-cta">
+            <a href="HPPM_Hewawasam.pdf" download="HPPM_Hewawasam.pdf" class="btn" aria-label="Download CV">📄 Download CV</a>
+            <a href="#contact" class="btn ghost">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- EDUCATION (from education.html) -->
-  <section id="education" class="content" data-nav="education">
-    <h1>Education</h1>
+    <!-- EDUCATION -->
+    <section id="education" class="content" data-nav="education" tabindex="-1">
+      <h1>Education</h1>
+      <div class="grid">
+        <article class="card">
+          <h2>B.Sc. (Honours) in Mathematics</h2>
+          <p><strong>University of Sri Jayewardenepura</strong> — 2019–2023</p>
+          <ul>
+            <li>Mathematics GPA: <strong>3.46 / 4.00</strong></li>
+            <li>Overall GPA: <strong>3.31 / 4.00</strong> (Second Class Upper)</li>
+            <li>Studied Computer Science and Statistics in early years.</li>
+          </ul>
+        </article>
 
-    <div class="card">
-      <h2>B.Sc. (Honours) in Mathematics</h2>
-      <p><strong>University of Sri Jayewardenepura, Sri Lanka</strong> | <em>2019 - 2023</em></p>
-      <ul>
-        <li>Mathematics GPA: <strong>3.46 / 4.00</strong></li>
-        <li>Overall GPA: <strong>3.31 / 4.00</strong> (Second Class Upper Division)</li>
-        <li>Studied <strong>Computer Science</strong> and <strong>Statistics</strong> in the first two years in addition to Mathematics.</li>
-      </ul>
-    </div>
+        <article class="card">
+          <h2>Secondary Education</h2>
+          <p><strong>D.S. Senanayake College, Colombo 07</strong></p>
+          <ul>
+            <li>G.C.E. Advanced Level — Mathematics, Physics, Chemistry</li>
+            <li>G.C.E. Ordinary Level — Strong results in Mathematics & English</li>
+          </ul>
+        </article>
 
-    <div class="card">
-      <h2>Secondary Education</h2>
-      <p><strong>D.S. Senanayake College, Colombo 07, Sri Lanka</strong> | <em>2011 - 2017</em></p>
-      <ul>
-        <li><strong>G.C.E. Advanced Level Examination (2017):</strong> Mathematics, Physics, Chemistry, and English.</li>
-        <li><strong>G.C.E. Ordinary Level Examination (2014):</strong> Including Mathematics and English.</li>
-      </ul>
-    </div>
+        <article class="card">
+          <h2>Skills & Tools</h2>
+          <ul>
+            <li>Mathematical Modelling, Operational Research</li>
+            <li>Python, MATLAB, Maple, LaTeX</li>
+            <li>Algorithms, Logic Programming (Prolog)</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-    <div class="card">
-      <h2>Academic Achievements & Skills</h2>
-      <ul>
-        <li>Offered to specialize in <strong>Mathematics and Computer Science</strong> at the end of the second academic year (May 2021).</li>
-        <li><strong>Software:</strong> Maple, MATLAB, LaTeX</li>
-        <li><strong>Languages:</strong> Python, Java, C, C++, Prolog</li>
-      </ul>
-    </div>
-  </section>
+    <!-- EXPERIENCE -->
+    <section id="experience" class="content" data-nav="experience" tabindex="-1">
+      <h1>Experience</h1>
+      <div class="grid">
+        <article class="card">
+          <h2>Lecturer & Level Coordinator</h2>
+          <p><strong>Informatics Institute of Technology (IIT)</strong></p>
+          <ul>
+            <li>Lectures and tutorials: Operational Research, Formal Methods, Mathematics for Computing.</li>
+            <li>Project supervision & curriculum coordination.</li>
+          </ul>
+        </article>
 
-  <!-- EXPERIENCE (from experience.html) -->
-  <section id="experience" class="content" data-nav="experience">
-    <h1>Experience</h1>
+        <article class="card">
+          <h2>Assistant Lecturer</h2>
+          <p><strong>IIT — Faculty of Computer Science</strong></p>
+          <ul>
+            <li>Course delivery, assessments, student mentoring.</li>
+          </ul>
+        </article>
 
-    <div class="card">
-      <h2>Lecturer & Level Coordinator (Second Year - UoW Students)</h2>
-      <p><strong>Faculty of Computer Science, Informatics Institute of Technology, Sri Lanka</strong></p>
-      <ul>
-        <li>Lectures & tutorials: Operational Research, Formal Methods, Mathematics for Computing, OOP, Algorithms.</li>
-        <li>Supervised multiple group projects (CareConnect, FashionFlow, etc.)</li>
-      </ul>
-    </div>
+        <article class="card">
+          <h2>Temporary Demonstrator</h2>
+          <p><strong>University of Sri Jayewardenepura</strong></p>
+          <ul>
+            <li>Maple demonstrations, tutorials and grading.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-    <div class="card">
-      <h2>Assistant Lecturer</h2>
-      <p><strong>Faculty of Computer Science, Informatics Institute of Technology, Sri Lanka</strong></p>
-      <ul>
-        <li>Teaching, marking, supervising projects and coordinating course timetables.</li>
-      </ul>
-    </div>
+    <!-- PROJECTS -->
+    <section id="projects" class="content" data-nav="projects" tabindex="-1">
+      <h1>Projects</h1>
+      <div class="grid">
+        <article class="card">
+          <h3>Analysis of Tournament Scheduling & DLS Implementation</h3>
+          <p>Final year research — DLS simulator in MATLAB and scheduling research.</p>
+        </article>
 
-    <div class="card">
-      <h2>Temporary Demonstrator</h2>
-      <p><strong>Department of Mathematics, University of Sri Jayewardenepura</strong></p>
-      <ul>
-        <li>Taught Maple software, tutorials and graded assignments/exams.</li>
-      </ul>
-    </div>
+        <article class="card">
+          <h3>A Novel Method to Tournament Scheduling</h3>
+          <p>Published work exploring scheduling optimisation techniques.</p>
+        </article>
 
-    <div class="card">
-      <h2>Private Tutor</h2>
-      <p><strong>Independent</strong> | <em>2018 - Present</em></p>
-      <ul>
-        <li>O/L and A/L Mathematics teaching, personalized guidance.</li>
-      </ul>
-    </div>
-  </section>
+        <article class="card">
+          <h3>Prolog: Classical Planning</h3>
+          <p>AI & Logic Programming coursework and experiments.</p>
+        </article>
+      </div>
+    </section>
 
-  <!-- PROJECTS (from projects.html) -->
-  <section id="projects" class="content" data-nav="projects">
-    <h1>Projects</h1>
+    <!-- CONTACT -->
+    <section id="contact" class="container" data-nav="contact" tabindex="-1">
+      <h1>Get in Touch</h1>
+      <div class="contact-grid">
+        <form action="mailto:pasindu.maduranga08@gmail.com" method="POST" enctype="text/plain" class="contact-form" aria-label="Contact form">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
 
-    <div class="subsection">
-      <h2>Academic Projects</h2>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
 
-      <div class="card">
-        <h3>Final Year Research Project: Analysis of Tournament Scheduling and Implementation of DLS Method</h3>
-        <p><em>Comprehensive Research Project (2023)</em></p>
-        <p>Conducted an in-depth analysis of tournament scheduling methods and implemented a Duckworth–Lewis (DLS) simulator in MATLAB.</p>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Type your message..." required></textarea>
+
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+
+        <aside class="contact-info">
+          <div>
+            <p><strong>Phone:</strong> <a href="tel:+94726839060">+94 72 683 9060</a></p>
+            <p><strong>Email:</strong> <a href="mailto:pasindu.maduranga08@gmail.com">pasindu.maduranga08@gmail.com</a></p>
+          </div>
+
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/pasindu-madhuranga-a02860213" target="_blank" rel="noopener" title="LinkedIn">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+            </a>
+            <a href="https://orcid.org/0009-0002-5157-3012" target="_blank" rel="noopener" title="ORCID">
+              <img src="https://cdn-icons-png.flaticon.com/512/906/906343.png" alt="ORCID">
+            </a>
+          </div>
+        </aside>
       </div>
 
-      <div class="card">
-        <h3>A Novel Method to Tournament Scheduling</h3>
-        <p><em>Published Research Project (2024)</em></p>
-      </div>
-
-      <div class="card">
-        <h3>Prolog Project on Classical Planning</h3>
-        <p><em>Logic Programming & AI (2023)</em></p>
-      </div>
-    </div>
-
-    <div class="subsection">
-      <h2>Other Projects</h2>
-
-      <div class="card">
-        <h3>Interactive Linear Regression App</h3>
-        <p><em>Published on Streamlit (2025)</em></p>
-      </div>
-
-      <div class="card">
-        <h3>Bridge Optimization Simulator</h3>
-        <p><em>Published on Streamlit (2025)</em></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT (from contact.html) -->
-  <section id="contact" class="container" data-nav="contact">
-    <h1>Get in Touch</h1>
-    <form action="mailto:pasindu.maduranga08@gmail.com" method="POST" enctype="text/plain">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" placeholder="Your Name" required />
-
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="your@email.com" required />
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="6" placeholder="Type your message here..." required></textarea>
-
-      <button type="submit">Send Message</button>
-    </form>
-
-    <div class="contact-info">
-      <p><strong>Phone:</strong> <a href="tel:+94726839060">+94 72 683 9060</a></p>
-      <p><strong>Email:</strong> <a href="mailto:pasindu.maduranga08@gmail.com">pasindu.maduranga08@gmail.com</a></p>
-    </div>
-
-    <div class="social-icons">
-      <a href="https://www.linkedin.com/in/pasindu-madhuranga-a02860213" target="_blank" rel="noopener" title="LinkedIn">
-        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon">
-      </a>
-      <a href="https://orcid.org/0009-0002-5157-3012" target="_blank" rel="noopener" title="ORCID">
-        <img src="https://cdn-icons-png.flaticon.com/512/906/906343.png" alt="ORCID Icon">
-      </a>
-    </div>
-
-    <a id="back-link" class="back-link" href="#home">← Back to Home</a>
-  </section>
+      <a id="back-link" class="back-link" href="#home">← Back to Home</a>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Pasindu Hewawasam | All Rights Reserved</p>
+    <p>&copy; 2025 Pasindu Hewawasam</p>
   </footer>
 
   <script src="script.js"></script>
