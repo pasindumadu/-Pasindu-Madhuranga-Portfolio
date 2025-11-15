@@ -81,20 +81,28 @@ main{ max-width:1100px; margin:28px auto; padding:8px 18px 80px; }
 .contact-form input, .contact-form textarea{ width:100%; padding:10px; margin-top:6px; border-radius:8px; border:1px solid rgba(255,255,255,0.03); background: rgba(6,10,26,0.35); color:#eaf2ff }
 .contact-info{ color: rgba(220,230,255,0.9); padding:12px; background: rgba(255,255,255,0.02); border-radius:10px }
 
-/* ---------- UPDATED SMALLER ICONS ---------- */
+/* ---------- SOCIAL ICONS — FIXED SMALL SIZE ---------- */
+
 .social-icons{ margin-top:12px; display:flex; gap:10px; }
 
 .social-icons img{
-  width:24px;     /* ← smaller, clean size */
-  height:24px;
-  filter: drop-shadow(0 4px 10px rgba(10,20,40,0.4));
-  border-radius:6px;
-  transition: transform .2s ease, filter .2s ease;
+    width:22px !important;
+    height:22px !important;
+    max-width:22px !important;
+    max-height:22px !important;
+    min-width:22px !important;
+    min-height:22px !important;
+
+    object-fit:contain !important;
+    border-radius:4px !important;
+
+    filter: drop-shadow(0 4px 8px rgba(10,20,40,0.45));
+    transition:transform .2s ease, filter .2s ease;
 }
 
 .social-icons img:hover{
-  transform: scale(1.12);
-  filter: drop-shadow(0 6px 14px rgba(150,180,255,0.45));
+    transform:scale(1.16);
+    filter: drop-shadow(0 6px 14px rgba(150,180,255,0.55));
 }
 
 /* back-to-top */
@@ -116,5 +124,5 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 14px) }
 /* focus outlines */
 a:focus, button:focus, input:focus, textarea:focus{ outline:3px solid rgba(135,160,255,0.12); outline-offset:2px }
 
-/* subtle canvas glow helper */
+/* subtle canvas glow */
 .canvas-glow { filter: drop-shadow(0 6px 20px rgba(140,160,255,0.12)); }
