@@ -1,7 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize cards animation
+  // Elements used across the page
+  const sections = document.querySelectorAll("section[data-nav]");
+  const navLinks = document.querySelectorAll("nav a");
   const cards = document.querySelectorAll(".card");
-  const observer = new IntersectionObserver((entries) => {
+  const progressBar = document.getElementById("progress-bar");
+
+  // typing and profile effects from your original script
+  const typingText = document.querySelector(".typing");
+  if (typingText) initTypeEffect(typingText);
+  initProfilePhotoEffects();
+  initBackToTop();
+  initCVDownload();
+
+  // Fade-in cards using IntersectionObserver
+  const cardObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("fade-in");
@@ -11,28 +23,63 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.classList.add("fade-out");
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.18 });
 
-  cards.forEach(card => observer.observe(card));
+  cards.forEach(card => cardObserver.observe(card));
 
-  // Initialize typing effect
-  const typingText = document.querySelector(".typing");
-  if (typingText) {
-    initTypeEffect(typingText);
+  // Smooth-scroll for nav links (and update hash)
+  navLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        e.preventDefault();
+        const id = href.slice(1);
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          history.pushState(null, "", `#${id}`);
+        }
+      }
+    });
+  });
+
+  // IntersectionObserver to toggle active nav item as we scroll
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute("id");
+        // highlight nav
+        navLinks.forEach(a => a.classList.remove("active"));
+        const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+        if (activeLink) activeLink.classList.add("active");
+        // update hash without jumping
+        history.replaceState(null, "", `#${id}`);
+      }
+    });
+  }, { root: null, rootMargin: "-20% 0px -40% 0px", threshold: 0 });
+
+  sections.forEach(sec => navObserver.observe(sec));
+
+  // Progress bar update on scroll
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    if (progressBar) progressBar.style.width = percent + "%";
+  });
+
+  // If page loads with a hash, scroll smoothly to it
+  if (location.hash) {
+    const id = location.hash.slice(1);
+    const target = document.getElementById(id);
+    if (target) setTimeout(() => target.scrollIntoView({ behavior: "smooth" }), 200);
   }
-
-  // Initialize profile photo effects
-  initProfilePhotoEffects();
-
-  // Initialize back to top button
-  initBackToTop();
-
-  // Initialize CV download
-  initCVDownload();
 });
 
+/* ---------- helper functions (typed effect, profile effects, back to top, cv download) ---------- */
+
 function initTypeEffect(element) {
-  const words = [" Lecturer", "Researcher"];
+  const words = [" Lecturer", " Researcher"];
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
@@ -51,44 +98,29 @@ function initTypeEffect(element) {
     } else {
       isDeleting = !isDeleting;
       if (!isDeleting) wordIndex = (wordIndex + 1) % words.length;
-      setTimeout(typeEffect, 1000);
+      setTimeout(typeEffect, 900);
     }
   }
-
   typeEffect();
 }
 
 function initProfilePhotoEffects() {
   const profilePic = document.querySelector('.profile-pic');
   if (!profilePic) return;
-
-  // Add hover effect
   profilePic.addEventListener('mousemove', (e) => {
     const { left, top, width, height } = profilePic.getBoundingClientRect();
     const x = (e.clientX - left) / width - 0.5;
     const y = (e.clientY - top) / height - 0.5;
-    
-    profilePic.style.transform = `
-      scale(1.1) 
-      rotate3d(${-y}, ${x}, 0, 20deg)
-    `;
-    profilePic.style.boxShadow = `
-      ${x * 20}px ${y * 20}px 30px rgba(0,0,0,0.2)
-    `;
+    profilePic.style.transform = `scale(1.06) rotate3d(${-y}, ${x}, 0, 16deg)`;
+    profilePic.style.boxShadow = `${x * 12}px ${y * 12}px 24px rgba(0,0,0,0.15)`;
   });
-
-  // Reset on mouse leave
   profilePic.addEventListener('mouseleave', () => {
-    profilePic.style.transform = 'scale(1) rotate3d(0, 0, 0, 0deg)';
+    profilePic.style.transform = 'scale(1)';
     profilePic.style.boxShadow = 'none';
   });
-
-  // Add click effect
   profilePic.addEventListener('click', () => {
-    profilePic.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-      profilePic.style.transform = 'scale(1)';
-    }, 150);
+    profilePic.style.transform = 'scale(0.96)';
+    setTimeout(() => profilePic.style.transform = 'scale(1)', 150);
   });
 }
 
@@ -104,62 +136,19 @@ function initBackToTop() {
 
   backToTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    history.replaceState(null, "", "#home");
   });
 }
 
 function initCVDownload() {
   const downloadBtn = document.querySelector('.btn[download]');
   if (!downloadBtn) return;
-
   downloadBtn.addEventListener('click', (e) => {
-    // Don't prevent default - let the native download attribute work
     const originalText = downloadBtn.innerHTML;
-
-    // Show downloading state
     downloadBtn.innerHTML = '⏳ Downloading...';
-
-    // Set a timeout to check if download started
     setTimeout(() => {
-      // Success state
       downloadBtn.innerHTML = '✓ Downloaded!';
-      
-      // Reset button text after 2 seconds
-      setTimeout(() => {
-        downloadBtn.innerHTML = originalText;
-      }, 2000);
-    }, 1000);
-
-    // Error handling - if file doesn't exist
-    downloadBtn.onerror = () => {
-      downloadBtn.innerHTML = '❌ Download Failed';
-      setTimeout(() => {
-        downloadBtn.innerHTML = originalText;
-      }, 2000);
-    };
+      setTimeout(() => downloadBtn.innerHTML = originalText, 1800);
+    }, 800);
   });
 }
-
-// Scroll event listeners
-window.addEventListener("scroll", () => {
-  // Progress bar
-  const progressBar = document.querySelector("#progress-bar");
-  const scrollTop = window.scrollY;
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  progressBar.style.width = scrollPercent + "%";
-
-  // Nav highlighting
-  const sections = document.querySelectorAll("section");
-  let scrollPos = window.scrollY + 100;
-
-  sections.forEach(section => {
-    if (scrollPos >= section.offsetTop && 
-        scrollPos < section.offsetTop + section.offsetHeight) {
-      const id = section.getAttribute("id");
-      if (id) {
-        document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
-        document.querySelector(`nav a[href*="${id}"]`)?.classList.add("active");
-      }
-    }
-  });
-});
