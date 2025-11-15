@@ -35,16 +35,69 @@ body::before{
 
 /* ---------- Navigation ---------- */
 .top-nav{
-  position:sticky; top:0; z-index:60;
+  position:sticky;
+  top:0;
+  z-index:60;
   background: linear-gradient(180deg, rgba(6,10,26,0.24), rgba(6,10,26,0.14));
   border-bottom:1px solid rgba(255,255,255,0.02);
   backdrop-filter: blur(6px);
+  white-space: nowrap;
 }
-.top-nav .nav-inner{ max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:12px; padding:10px 18px; height:var(--nav-h);}
-.brand{ color:var(--muted); font-weight:700; text-decoration:none; margin-right:auto; }
-.nav-links a{ color: rgba(220,230,255,0.86); text-decoration:none; padding:8px 10px; border-radius:8px; font-weight:600; margin-left:8px; transition:background .18s; }
-.nav-links a:hover{ background: rgba(255,255,255,0.02); }
-.nav-links a.active{ color:var(--accent); background: linear-gradient(90deg, rgba(138,166,255,0.12), rgba(110,130,255,0.06)); box-shadow:0 8px 24px rgba(60,80,150,0.06); }
+
+.top-nav .nav-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:10px 18px;
+  height:var(--nav-h);
+}
+
+/* Brand */
+.brand{
+  color:var(--muted);
+  font-weight:700;
+  text-decoration:none;
+  padding-right:12px;
+  flex-shrink:0;
+}
+
+/* Horizontal nav links (desktop + mobile) */
+.nav-links{
+  display:flex;
+  flex-direction:row;
+  gap:10px;
+  overflow-x:auto;        /* << scroll horizontally if needed */
+  scrollbar-width:none;   /* Firefox hide scrollbar */
+  -ms-overflow-style:none; /* IE/Edge hide scrollbar */
+  flex:1;
+}
+
+/* Hide scrollbar (Chrome/Safari) */
+.nav-links::-webkit-scrollbar{
+  display:none;
+}
+
+.nav-links a{
+  color: rgba(220,230,255,0.86);
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:600;
+  flex-shrink:0;           /* << prevent shrinking on mobile */
+  transition:background .18s, color .18s;
+}
+
+.nav-links a:hover{
+  background: rgba(255,255,255,0.04);
+}
+
+.nav-links a.active{
+  color:var(--accent);
+  background: linear-gradient(90deg, rgba(138,166,255,0.18), rgba(110,130,255,0.1));
+  box-shadow:0 8px 24px rgba(60,80,150,0.12);
+}
 
 /* ---------- Layout ---------- */
 main{ max-width:1100px; margin:28px auto; padding:8px 18px 80px; }
