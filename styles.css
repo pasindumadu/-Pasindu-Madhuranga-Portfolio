@@ -81,6 +81,22 @@ main{ max-width:1100px; margin:28px auto; padding:8px 18px 80px; }
 .contact-form input, .contact-form textarea{ width:100%; padding:10px; margin-top:6px; border-radius:8px; border:1px solid rgba(255,255,255,0.03); background: rgba(6,10,26,0.35); color:#eaf2ff }
 .contact-info{ color: rgba(220,230,255,0.9); padding:12px; background: rgba(255,255,255,0.02); border-radius:10px }
 
+/* ---------- UPDATED SMALLER ICONS ---------- */
+.social-icons{ margin-top:12px; display:flex; gap:10px; }
+
+.social-icons img{
+  width:24px;     /* ← smaller, clean size */
+  height:24px;
+  filter: drop-shadow(0 4px 10px rgba(10,20,40,0.4));
+  border-radius:6px;
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.social-icons img:hover{
+  transform: scale(1.12);
+  filter: drop-shadow(0 6px 14px rgba(150,180,255,0.45));
+}
+
 /* back-to-top */
 #back-to-top{ position:fixed; right:18px; bottom:18px; border-radius:10px; padding:10px 12px; display:none; z-index:9999; background:linear-gradient(90deg,#95b6ff,#6f8cff); border:none; color:#07102a; font-weight:700; box-shadow:0 10px 26px rgba(60,80,150,0.12) }
 
@@ -100,5 +116,5 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 14px) }
 /* focus outlines */
 a:focus, button:focus, input:focus, textarea:focus{ outline:3px solid rgba(135,160,255,0.12); outline-offset:2px }
 
-/* stronger glow for canvas overlay elements (visual only) */
+/* subtle canvas glow helper */
 .canvas-glow { filter: drop-shadow(0 6px 20px rgba(140,160,255,0.12)); }
